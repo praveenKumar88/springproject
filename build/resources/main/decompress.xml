@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:int-zip="http://www.springframework.org/schema/integration/zip"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd http://www.springframework.org/schema/integration/zip http://www.springframework.org/schema/integration/zip/spring-integration-zip.xsd"
+
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int-file="http://www.springframework.org/schema/integration/file">
+
+    <description>
+        Decompress message
+    </description>
+
+    <int:chain input-channel="inputChannel" output-channel="outputChannel">
+
+        <int-zip:unzip-transformer result-type="BYTE_ARRAY"
+                                   expect-single-result="true"/>
+    </int:chain>
+
+    <int:channel id="outputChannel"/>
+
+</beans>
